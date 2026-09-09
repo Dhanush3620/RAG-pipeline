@@ -6,7 +6,7 @@ import {
   preliminaryAnswerChainAgent,
   generateDocumentMetadata
 } from './agentchains';
-import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 import type { TablesInsert } from '@/types/database';
 import { revalidatePath } from 'next/cache';
 import { encodeBase64 } from '@/utils/base64';
@@ -15,7 +15,7 @@ export const dynamic = 'force-dynamic';
 
 export const maxDuration = 300;
 
-const embeddingModel = openai.embedding('text-embedding-3-small');
+const embeddingModel = google.textEmbeddingModel('text-embedding-004');
 
 type DocumentVectorRecord = TablesInsert<'user_documents_vec'>;
 

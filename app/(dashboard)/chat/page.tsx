@@ -15,7 +15,7 @@ interface PageProps {
 export default async function ChatPage(props: PageProps) {
   const searchParams = await props.searchParams;
   const cookieStore = await cookies();
-  const selectedOption = cookieStore.get('selectedOption')?.value ?? 'gpt-5';
+  const selectedOption = cookieStore.get('selectedOption')?.value ?? 'gemini-3.8-flash';
   const createChatId = uuidv4();
 
   return (

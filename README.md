@@ -42,7 +42,7 @@ Before doing math on the text, we must organize and summarize it.
 graph TD
     A[Markdown] --> B{Page Splitter}
     B --> C[Page Chunks]
-    A --> D[OpenAI GPT-4o mini]
+    A --> D[Google Gemini 3.8 Flash]
     D -->|Generates| E[Title, Topics, Summary]
     C --> F[Chunk + Global Metadata]
 ```
@@ -52,11 +52,11 @@ graph TD
 Translating human language into machine mathematics.
 ```mermaid
 graph LR
-    A[Chunk + Metadata] --> B[OpenAI text-embedding-3-small]
+    A[Chunk + Metadata] --> B[Google text-embedding-004]
     B -->|Translates to Math| C["[0.012, -0.443...]"]
     C --> D[(Supabase pgvector DB)]
 ```
-* **How it works:** Every chunk is sent to OpenAI's embedding model, returning a vector array of exactly 1,536 numbers. These numbers represent the semantic meaning of the text. We save the original text, metadata, and this vector into Supabase using the `pgvector` extension.
+* **How it works:** Every chunk is sent to Google's embedding model, returning a vector array of exactly 768 numbers. These numbers represent the semantic meaning of the text. We save the original text, metadata, and this vector into Supabase using the `pgvector` extension.
 
 ---
 
@@ -67,7 +67,7 @@ When the user asks a question, we must speak the database's mathematical languag
 ```mermaid
 graph LR
     A[User: 'What is Q3 Revenue?'] --> B[Next.js API]
-    B --> C[OpenAI text-embedding-3-small]
+    B --> C[Google text-embedding-004]
     C -->|Translates Query| D["[0.055, -0.221...]"]
 ```
 * **How it works:** The user asks a question in plain English. To find the answer, we convert the question into a vector using the *exact same model* used during ingestion.
@@ -109,7 +109,7 @@ graph TD
 
 - **Framework**: Next.js 16 with App Router
 - **Vector Database**: Supabase (PostgreSQL with `pgvector`)
-- **Embeddings**: OpenAI `text-embedding-3-small`
+- **Embeddings**: Google `text-embedding-004`
 - **Document Parser**: LlamaCloud
 - **Reranker**: Cohere `rerank-english-v3.0`
 - **Orchestration**: Vercel AI SDK
@@ -124,11 +124,11 @@ npm install
 ```
 
 ### 2. Environment Variables
-Copy `.env.example` to `.env.local` and add your keys for Supabase, OpenAI, and LlamaCloud.
+Copy `.env.example` to `.env.local` and add your keys for Supabase, Google AI (Gemini), and LlamaCloud.
 
 ### 3. Database Setup (Vector Config)
 Run the SQL in `database/setup.sql` in your Supabase SQL Editor. This sets up:
-- **Embedding Model**: `text-embedding-3-small` (1536 dimensions)
+- **Embedding Model**: `text-embedding-004` (768 dimensions)
 - **Index**: HNSW with `m=16`, `ef_construction=64`
 
 ### 4. Start Development Server

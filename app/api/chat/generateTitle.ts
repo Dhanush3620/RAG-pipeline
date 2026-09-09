@@ -1,6 +1,6 @@
 import 'server-only';
 import { generateText } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 
 /**
  * Generate a concise, descriptive title for a chat based on the first message
@@ -9,7 +9,7 @@ import { openai } from '@ai-sdk/openai';
 export async function generateChatTitle(firstMessage: string): Promise<string> {
   try {
     const { text } = await generateText({
-      model: openai('gpt-4o-mini'),
+      model: google('gemini-3.8-flash'),
       maxOutputTokens: 20,
       messages: [
         {

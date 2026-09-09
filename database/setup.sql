@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS public.user_documents_vec (
   document_id uuid NOT NULL,
   text_content text NOT NULL,
   page_number integer NOT NULL,
-  embedding extensions.vector(1024) NULL,
+  embedding extensions.vector(768) NULL,
   CONSTRAINT user_documents_vec_pkey PRIMARY KEY (id),
   CONSTRAINT user_documents_vec_document_page_unique UNIQUE (document_id, page_number),
   CONSTRAINT user_documents_vec_document_id_fkey FOREIGN KEY (document_id) REFERENCES user_documents (id) ON DELETE CASCADE
@@ -287,7 +287,7 @@ USING (
 -- Used by the autonomous document search tool
 
 CREATE OR REPLACE FUNCTION match_documents(
-  query_embedding vector(1024),
+  query_embedding vector(768),
   match_count int,
   filter_user_id uuid,
   file_ids uuid[],

@@ -373,8 +373,8 @@ const MessageInput: React.FC<MessageInputProps> = ({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 bg-slate-800 border-slate-700">
                   {[
-                    { value: 'gpt-5', label: 'GPT-5' },
-                    { value: 'gpt-5-mini', label: 'GPT-5 Mini' }
+                    { value: 'gemini-3.8-flash', label: 'Gemini 3.8 Flash' },
+                    { value: 'gemini-3.6-flash', label: 'Gemini 3.6 Flash' }
                   ].map((option) => (
                     <DropdownMenuItem
                       key={option.value}

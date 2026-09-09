@@ -1,12 +1,12 @@
 import { tool } from 'ai';
 import { z } from 'zod';
 import { embed } from 'ai';
-import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 import { createServerSupabaseClient } from '@/lib/server/server';
 import { CohereClient } from 'cohere-ai';
 import Fuse from 'fuse.js';
 
-const embeddingModel = openai.embedding('text-embedding-3-small');
+const embeddingModel = google.textEmbeddingModel('text-embedding-004');
 
 // Initialize Cohere client for reranking
 const cohere = new CohereClient({

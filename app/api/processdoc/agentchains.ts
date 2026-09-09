@@ -1,7 +1,7 @@
 import 'server-only';
 import { generateObject } from 'ai';
 import { z } from 'zod';
-import { openai } from '@ai-sdk/openai';
+import { google } from '@ai-sdk/google';
 
 // Schema for chunk-level analysis (for each page/section)
 const contentAnalysisSchema = z.object({
@@ -52,7 +52,7 @@ Example:
 - GOOD question: "What was the company's revenue in Q3 2024?"`;
 
   const { object, usage } = await generateObject({
-    model: openai('gpt-4o-mini'),
+    model: google('gemini-3.8-flash'),
     system: SystemPrompt,
     prompt: content,
     schema: contentAnalysisSchema,
@@ -124,7 +124,7 @@ Example BAD metadata:
 - Entities: ["company", "amount"]`;
 
   const { object, usage, finishReason } = await generateObject({
-    model: openai('gpt-4o-mini'),
+    model: google('gemini-3.8-flash'),
     system: SystemPrompt,
     prompt: content,
     schema: documentMetadataSchema,

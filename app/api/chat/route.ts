@@ -184,18 +184,18 @@ const getModel = (selectedModel: string) => {
     case 'claude-4-sonnet':
       return anthropic('claude-sonnet-4-5');
     case 'gpt-5':
-      return openai('gpt-5.1');
+      return google('gemini-3.8-flash');
     case 'gpt-5-mini':
-      return openai('gpt-5-mini');
+      return google('gemini-3.8-flash');
     case 'o3':
-      return openai('o3-2025-04-16');
-    case 'gemini-3-pro-preview':
-      return google('gemini-3-pro-preview');
-    case 'gemini-2.5-flash-preview-09-2025':
-      return google('gemini-2.5-flash-preview-09-2025');
+      return google('gemini-3.8-flash');
+    case 'gemini-3.8-flash':
+      return google('gemini-3.8-flash');
+    case 'gemini-3.6-flash':
+      return google('gemini-3.6-flash');
     default:
       console.error('Invalid model selected:', selectedModel);
-      return openai('gpt-5.1');
+      return google('gemini-3.8-flash');
   }
 };
 
@@ -337,7 +337,7 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const selectedModel = body.option ?? 'gpt-5';
+  const selectedModel = body.option ?? 'gemini-3.8-flash';
   const userId = session.sub;
 
   const providerOptions: SharedV2ProviderMetadata = {};
@@ -348,8 +348,8 @@ export async function POST(req: NextRequest) {
   }
 
   if (
-    selectedModel === 'gemini-3-pro-preview' ||
-    selectedModel === 'gemini-2.5-flash-preview-09-2025'
+    selectedModel === 'gemini-3.8-flash' ||
+    selectedModel === 'gemini-3.8-flash'
   ) {
     providerOptions.google = {
       thinkingConfig: {
