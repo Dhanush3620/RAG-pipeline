@@ -3,7 +3,7 @@ import type { UIMessage } from 'ai';
 import { streamText, convertToModelMessages, stepCountIs } from 'ai';
 import { saveMessagesToDB } from './SaveToDbIncremental';
 import type { OpenAIResponsesProviderOptions } from '@ai-sdk/openai';
-import { openai } from '@ai-sdk/openai';
+
 import type { AnthropicProviderOptions } from '@ai-sdk/anthropic';
 import { anthropic } from '@ai-sdk/anthropic';
 import { getSession } from '@/lib/server/supabase';

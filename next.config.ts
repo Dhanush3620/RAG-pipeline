@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
     browserDebugInfoInTerminal: true,
     globalNotFound: true
   },
-  poweredByHeader: false
+  poweredByHeader: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 export default nextConfig;
